@@ -9,7 +9,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +45,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('login')->middleware('auth');
+
+// profile
+Route::get('/dashboard/profile/{user:id}', [ProfileController::class, 'index']);
+Route::post('/dashboard/profile/{user:id}', [ProfileController::class, 'update']);
 
 // dashboard/product
 Route::get('/dashboard/products', [ProductController::class, 'index']);

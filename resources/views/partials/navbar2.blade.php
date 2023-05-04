@@ -12,12 +12,12 @@
         <li class="nav-item">
           <a class="nav-link {{($title === 'About' ) ? 'active' : '' }}" href="/about">About</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link {{($title === 'Posts' ) ? 'active' : '' }}" href="/posts">produk</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{($title === 'Contact' ) ? 'active' : '' }}" href="/contact">Kontak Kami</a>
-        </li>
+        </li> -->
       </ul>
       <ul class="navbar-nav ms-auto">
         @auth

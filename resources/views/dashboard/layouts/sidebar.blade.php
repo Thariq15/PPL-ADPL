@@ -3,9 +3,10 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="users" class="align-text-bottom"></span>
-          Profile
-        </a>
+          <a class="nav-link {{($title === 'Profile' ) ? 'active' : '' }}" aria-current="page" href="/dashboard/profile/{{Auth::user()->id}}">
+            <span data-feather="users" class="align-text-bottom"></span>
+            Profile
+          </a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{($title === 'Dashboard' ) ? 'active' : '' }}" aria-current="page" href="/dashboard">
@@ -28,13 +29,13 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-          Reports
+          Absent
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="layers" class="align-text-bottom"></span>
-          Integrations
+          Cassier
         </a>
       </li>
     </ul>
@@ -49,13 +50,13 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="file-text" class="align-text-bottom"></span>
-          Current month
+          Money Management Reports
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="file-text" class="align-text-bottom"></span>
-          Last quarter
+          Payrool
         </a>
       </li>
       <li class="nav-item">
