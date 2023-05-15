@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        return view('navbarview.home', [
-            "title" => "Home"
-        ]);
+        return view('welcome');
     }
-    
 }

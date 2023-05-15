@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -12,10 +11,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('dashboard.sidebarview.editprofile', [
-            'title' => 'Profile',
-            "user" => user::all()
-        ]);
+        //
     }
 
     /**
@@ -53,12 +49,9 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    { {
-            $edit = User::find($id);
-            $edit->update($request->all());
-            return redirect('/dashboard')->with('success', 'Data Berhasil Diubah!');
-        }
+    public function update(Request $request, string $id)
+    {
+        //
     }
 
     /**

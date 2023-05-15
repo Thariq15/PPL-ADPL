@@ -1,0 +1,31 @@
+.list-none{
+  list-style: none;
+}
+
+.text-sm{
+  font-size: 12px;
+}
+
+.text-primary{
+  color: #696cff;
+}
+
+.text-secondary{
+  color: #8592a3;
+}
+
+.text-danger{
+  color: #ff3e1d;
+}
+
+.text-success{
+  color: #71dd37;
+}
+
+.text-warning{
+  color: #ffab00;
+}
+
+.text-info{
+  color: #03c3ec;
+}
