@@ -12,7 +12,8 @@ class AuthenticationController extends Controller
 {
     public function create(): View
     {
-        return view('auth.login');
+
+        return view('auth.login', ['title' => 'Login']);
     }
 
     public function store(Request $request)

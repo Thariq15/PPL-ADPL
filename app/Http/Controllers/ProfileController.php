@@ -2,63 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function show()
     {
-        //
+        return view('dashboard.profile.show');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function edit()
     {
-        //
+        return view('dashboard.profile.edit');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $user = User::find($request->id);
+        $user->name = $request->firstname . " " . $request->lastname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->birthday = $request->birthday;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        if ($request->file('profiles')) {
+            $file = $request->file('profiles');
+            $random = Str::random(8);
+            $extension = $file->getClientOriginalExtension();
+            $name = $random . '.' . $extension;
+            $destiny = 'assets/img/profile';
+            $file->move($destiny, $name);
+            $path = $destiny . "/" . $name;
+            $user->profile = $path;
+        }
+        $user->save();
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 }
