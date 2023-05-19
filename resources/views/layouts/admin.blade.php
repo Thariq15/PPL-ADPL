@@ -64,33 +64,73 @@
               </a>
             </li>
 
-            <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Product</span></li>
+            @if (Auth::user()->position != 'Karyawan')                
+              <!-- Components -->
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Product</span></li>
 
-            <!-- Layouts -->
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                  <div data-i18n="Layouts">Product</div>
-                </a>
-  
-                <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="/product" class="menu-link">
-                      <div data-i18n="Without menu">All Product</div>
-                    </a>
-                  </li>
-                </ul>
+              <!-- Layouts -->
+              @if (Auth::user()->position == 'Admin Caffe')  
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Menu</div>
+                  </a>
 
-                <ul class="menu-sub">
+                  <ul class="menu-sub">
                     <li class="menu-item">
-                      <a href="/product" class="menu-link">
-                        <div data-i18n="Without menu">Add Product</div>
+                      <a href="{{ route('menu') }}" class="menu-link">
+                        <div data-i18n="Without menu">Semua Menu</div>
                       </a>
                     </li>
                   </ul>
-              </li>
 
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('menu.add') }}" class="menu-link">
+                        <div data-i18n="Without menu">Tambah Menu</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              @endif
+              
+
+              @if (Auth::user()->position == 'Admin Kopi')  
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Produk</div>
+                  </a>
+
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('product') }}" class="menu-link">
+                        <div data-i18n="Without menu">Semua Produk</div>
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('product.add') }}" class="menu-link">
+                        <div data-i18n="Without menu">Tambah Produk</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              @endif
+            @endif
+
+            @if(Auth::user()->position == "Admin Caffe")
+              <!-- Components -->
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Supplier</span></li>
+              <li class="menu-item">
+                <a href="/dashboard" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Supply</div>
+                </a>
+              </li>
+            @endif
           </ul>
         </aside>
         <!-- / Menu -->

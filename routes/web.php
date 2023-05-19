@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 /*
@@ -29,41 +30,8 @@ Route::get('/', [HomeController::class, 'index']);
 // log out
 Route::post('logout', [AuthenticationController::class, 'destroy'])->name('logout');
 
-// // About
-// Route::get('/about', [AboutController::class, 'index']);
-
-// // produk
-// Route::get('/posts', [PostController::class, 'index']);
-// Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-
-// // kontak
-// Route::get('/contact', [KontakController::class, 'index']);
-
-// // login
-// Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
-// Route::post('/login', [LoginController::class, 'authenticate']);
-// Route::post('/logout', [LoginController::class, 'logout']);
-
-// Route::get('/auth/login', [AuthenticationController::class, 'create']);
-
-// // register
-// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-// Route::post('/register', [RegisterController::class, 'store']);
-
 // dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-
-// // profile
-// Route::get('/dashboard/profile/{user:id}', [ProfileController::class, 'index']);
-// Route::post('/dashboard/profile/{user:id}', [ProfileController::class, 'update']);
-
-// // dashboard/product
-// Route::get('/dashboard/products', [ProductController::class, 'index']);
-// Route::get('/dashboard/products/create', [ProductController::class, 'create']);
-// Route::get('/dashboard/editproduct/{product:id}', [ProductController::class, 'edit']);
-// Route::post('/dashboard/saveproduct', [ProductController::class, 'store']);
-// Route::post('/dashboard/editproduct/{product:id}', [ProductController::class, 'update']);
-
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -71,6 +39,24 @@ Route::middleware('auth')->group(function () {
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
   Route::post('logout', [AuthenticationController::class, 'destroy'])->name('logout');
+
+  // product
+  Route::prefix('product')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product');
+    Route::get('/add', [ProductController::class, 'add'])->name('product.add');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update', [ProductController::class, 'update'])->name('product.update');
+  });
+  // menu
+  Route::prefix('menu')->group(function () {
+    Route::get('/', [MenuController::class, 'index'])->name('menu');
+    Route::get('/add', [MenuController::class, 'add'])->name('menu.add');
+    Route::post('/store', [MenuController::class, 'store'])->name('menu.store');
+    Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
+    Route::post('/update', [MenuController::class, 'update'])->name('menu.update');
+    Route::get('/supply', [MenuController::class, 'supply'])->name('menu.supply');
+  });
 });
 
 require __DIR__ . '/auth.php';

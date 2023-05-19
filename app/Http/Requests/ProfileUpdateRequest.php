@@ -17,7 +17,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'profiles' => [File::image()->max(1024 * 2)], // maximum file is 3 mb
+            'profiles' => [File::image()->max(1024 * 5)], // maximum file is 5 mb
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)]
         ];
     }
