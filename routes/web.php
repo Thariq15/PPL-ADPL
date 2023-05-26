@@ -10,6 +10,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 /*
@@ -56,6 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
     Route::post('/update', [MenuController::class, 'update'])->name('menu.update');
     Route::get('/supply', [MenuController::class, 'supply'])->name('menu.supply');
+  });
+
+
+  Route::prefix('kasir')->group(function () {
+    Route::get('/pemesanan', [PemesananController::class, 'index'])->name('kasir');
   });
 });
 

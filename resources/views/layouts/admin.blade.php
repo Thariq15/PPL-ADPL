@@ -34,6 +34,11 @@
     <script src="{{ asset("/assets/js/config.js") }}"></script>
     <!-- Scripts -->
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  
+
+
+
   </head>
 
   <body>
@@ -63,6 +68,34 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
+
+            @if (Auth::user()->position == 'Karyawan')
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Kasir</span></li>
+
+              <!-- Dashboard -->
+              <li class="menu-item">
+                <a href="{{ route('menu') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Menu</div>
+                </a>
+              </li>
+
+              <!-- Dashboard -->
+              <li class="menu-item">
+                <a href="{{ route('kasir') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Pesanan</div>
+                </a>
+              </li>
+
+              <!-- Dashboard -->
+              <li class="menu-item">
+                <a href="{{ route('menu') }}" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Riwayat Pesanan</div>
+                </a>
+              </li>
+            @endif
 
             @if (Auth::user()->position != 'Karyawan')                
               <!-- Components -->
@@ -269,7 +302,9 @@
 
     <!-- Page JS -->
     <script src="{{ asset("/assets/js/dashboards-analytics.js") }}"></script>
-
+    <!-- Page JS -->
+    <script src="{{ asset("/assets/js/ui-modals.js")}}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     @yield("scripts")
 
     <!-- Place this tag in your head or just before your close body tag. -->
