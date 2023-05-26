@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transaktions', function (Blueprint $table) {
             $table->id();
             $table->string('buyer');
-            $table->enum('status', ['deliver', 'done', 'proccess'])->default('proccess');
+            $table->enum('status', ['deliver', 'done', 'proccess', 'cancel'])->default('proccess');
             $table->timestamps();
         });
     }

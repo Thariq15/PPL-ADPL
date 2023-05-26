@@ -13,13 +13,16 @@ class DetailTransaktionSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
-            DetailTransaktion::create([
-                "transaktion_id" => $i,
-                "count" => 2,
-                "price" => 10000,
-                "amount" => 20000,
-            ]);
+        for ($j = 1; $j <= 10; $j++) {
+            for ($i = 1; $i <= 10; $i++) {
+                DetailTransaktion::create([
+                    "transaktion_id" => $i,
+                    "name" => "Kopi",
+                    "count" => 2,
+                    "price" => 10000,
+                    "amount" => 20000,
+                ]);
+            }
         }
     }
 }

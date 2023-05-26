@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DetailTransaktion;
 use App\Models\Transaktion;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             MenuSeeder::class,
-            Transaktion::class,
+            TransaktionSeeder::class,
+            DetailTransaktionSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

@@ -62,6 +62,11 @@ Route::middleware('auth')->group(function () {
 
   Route::prefix('kasir')->group(function () {
     Route::get('/pemesanan', [PemesananController::class, 'index'])->name('kasir');
+    Route::post('/pemesanan/update', [PemesananController::class, 'update'])->name('pemesanan.update');
+  });
+
+  Route::prefix('detail')->group(function () {
+    Route::post('/delete', [PemesananController::class, 'deleteDetail'])->name('dt.delete');
   });
 });
 
