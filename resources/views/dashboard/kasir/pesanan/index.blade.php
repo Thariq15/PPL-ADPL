@@ -13,7 +13,7 @@
         <div class="card-header">
           <div class="row justify-content-end mb-3">
             <div class="col-md-2">
-              <a href="/" class="btn btn-success">tambah pesanan</a>
+              <a href="{{  route('kasir.add') }}" class="btn btn-success">tambah pesanan</a>
             </div>
           </div>
           @if(session()->has('updated'))                
@@ -38,16 +38,16 @@
           </div>
         @endif
         </div>
-        <div class="card-body">
+        <div class="card-datatable table-responsive">
 
-          <table id="example" class="dataTable display" style="width:100%">
+          <table id="example" class="datatables-basic table border-top" style="width:100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Antrian</th>
-                    <th>Status</th>
-                    <th>Amout</th>
-                    <th>Action</th>
+                    <th class="sorting">Name</th>
+                    <th class="sorting">Antrian</th>
+                    <th class="sorting">Status</th>
+                    <th class="sorting">Amout</th>
+                    <th class="sorting">Action</th>
                 </tr>
             </thead>
             <tbody>

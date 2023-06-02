@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
 
   Route::prefix('kasir')->group(function () {
     Route::get('/pemesanan', [PemesananController::class, 'index'])->name('kasir');
+    Route::get('/pemesanan/tambah', [PemesananController::class, 'add'])->name('kasir.add');
     Route::post('/pemesanan/update', [PemesananController::class, 'update'])->name('pemesanan.update');
   });
 

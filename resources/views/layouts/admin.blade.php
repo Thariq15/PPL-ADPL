@@ -23,7 +23,9 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{ asset("/assets/vendor/fonts/boxicons.css") }}" />
+    <link rel="stylesheet" href="{{asset("../assets/vendor/fonts/boxicons.css")}}" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/fonts/flag-icons.css" />
     <link rel="stylesheet" href="{{ asset("/assets/vendor/css/core.css") }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset("/assets/vendor/css/theme-default.css") }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset("/assets/css/demo.css") }}" />
@@ -32,13 +34,15 @@
     <link rel="stylesheet" href="{{ asset("/assets/vendor/libs/apex-charts/apex-charts.css") }}" />
     <script src="{{ asset("/assets/vendor/js/helpers.js") }}"></script>
     <script src="{{ asset("/assets/js/config.js") }}"></script>
-    <!-- Scripts -->
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-  
-
-
-
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/flatpickr/flatpickr.css" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
+    <!-- Form Validation -->
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
   </head>
 
   <body>
@@ -302,9 +306,12 @@
 
     <!-- Page JS -->
     <script src="{{ asset("/assets/js/dashboards-analytics.js") }}"></script>
-    <!-- Page JS -->
-    <script src="{{ asset("/assets/js/ui-modals.js")}}"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+      <!-- Vendors JS -->
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+      <!-- Page JS -->
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/tables-datatables-basic.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script> -->
     @yield("scripts")
 
     <!-- Place this tag in your head or just before your close body tag. -->

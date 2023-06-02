@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailTransaktion;
 use App\Models\Transaktion;
 use Illuminate\Http\Request;
+use App\Models\Menu;
 
 class PemesananController extends Controller
 {
@@ -29,5 +30,11 @@ class PemesananController extends Controller
         $id = $req->id;
         DetailTransaktion::destroy($id);
         return redirect()->route('kasir')->with('deleted', "Data berhasil dihapus");
+    }
+
+    public function add(){
+        $data = Menu::get();
+        // dd($data);
+        return view('dashboard.kasir.pesanan.tambah', ['data' => $data]);
     }
 }
