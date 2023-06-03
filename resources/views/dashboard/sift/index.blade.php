@@ -26,22 +26,25 @@
                             </tr>
                         </thead>
                         <tbody>
-            
+                            
+                            
+                            @foreach ($data as $item)                                
+                                <tr>
+                                    <td>{{ $item->judul }}</td>
+                                    <td>{{ $item->start }}</td>
+                                    <td>{{ $item->end }}</td>
+                                    @if (Auth::user()->position == 'Admin Caffe')
+                        
+                                    <td>
+                                        <a href="{{ route('shift.edit',$item->id) }}" class="btn btn-success">Edit</a>
+                                        <a href="/dashboard" class="btn btn-danger">Delete</a>
+                                    </td>
+                                @endif
+                                </tr>
+                            @endforeach
 
-                            <tr>
-                                <td>Kerja Harian</td>
-                                <td>08:00 AM</td>
-                                <td>16:00 PM</td>
-                                @if (Auth::user()->position == 'Admin Caffe')
-                      
-                                <td>
-                                    <a href="{{ route('shift.edit') }}" class="btn btn-success">Edit</a>
-                                    <a href="/dashboard" class="btn btn-danger">Delete</a>
-                                </td>
-                            @endif
-                            </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <td>Lembur</td>
                                 <td>08:00 AM</td>
                                 <td>16:00 PM</td>
@@ -52,7 +55,7 @@
                                         <a href="/dashboard" class="btn btn-danger">Delete</a>
                                     </td>
                                 @endif
-                            </tr>
+                            </tr> --}}
                         </tbody>
                         </table>
                     </div>

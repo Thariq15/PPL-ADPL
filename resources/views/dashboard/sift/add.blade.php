@@ -20,19 +20,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           @endif
-          <form method="post" enctype="multipart/form-data">
+          <form method="post" action="{{ route('shift.store') }}">
             @csrf
             <div class="mb-3">
                 <label for="">Judul Shift Kerja</label>
-                <input type="text" placeholder="daily working" class="form-control">
+                <input type="text" name="judul" placeholder="daily working" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="">Start</label>
-                <input type="time" placeholder="daily working" class="form-control">
+                <input type="time" name="start" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="">End</label>
-                <input type="time" placeholder="daily working" class="form-control">
+                <input type="time" name="end" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
           </form>

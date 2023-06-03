@@ -14,25 +14,27 @@
          
         </div>
         <div class="card-body">
-          @if (session()->has('success-add'))        
+          @if (session()->has('success-updated'))        
             <div class="alert alert-success alert-dismissible" role="alert">
-              {{ session('success-add') }}
+              {{ session('success-updated') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           @endif
-          <form method="post" enctype="multipart/form-data">
+          <form method="post" action="{{ route('shift.update') }}">
             @csrf
+            <input type="hidden" name="id" value="{{ $data->id }}">
             <div class="mb-3">
                 <label for="">Judul Shift Kerja</label>
-                <input type="text" placeholder="daily working" class="form-control">
+              
+                <input type="text" name="judul" value="{{ $data->judul }}" placeholder="daily working" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="">Start</label>
-                <input type="time" placeholder="daily working" class="form-control">
+                <input type="time" name="start" value="{{ $data->start }}" placeholder="daily working" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="">End</label>
-                <input type="time" placeholder="daily working" class="form-control">
+                <input type="time" name="end" value="{{ $data->end }}" placeholder="daily working" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
           </form>

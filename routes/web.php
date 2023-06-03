@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ShifKerjaController::class, 'index'])->name('shift');
     Route::get('/add', [ShifKerjaController::class, 'add'])->name('shift.add');
     Route::post('/store', [ShifKerjaController::class, 'store'])->name('shift.store');
-    Route::get('/edit', [ShifKerjaController::class, 'edit'])->name('shift.edit');
+    Route::get('/edit/{id}', [ShifKerjaController::class, 'edit'])->name('shift.edit');
     Route::post('/update', [ShifKerjaController::class, 'update'])->name('shift.update');
     Route::get('/delete/{id}', [ShifKerjaController::class, 'delete'])->name('shift.delete');
   });
