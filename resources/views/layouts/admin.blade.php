@@ -157,35 +157,156 @@
 
             @endif
 
-            @if (Auth::user()->position != 'Karyawan')                
+             
               <!-- Components -->
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">Product</span></li>
-
+              
               <!-- Layouts -->
-              @if (Auth::user()->position == 'Admin Caffe')  
-                <li class="menu-item">
-                  <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">Menu</div>
-                  </a>
+            @if (Auth::user()->position == 'Admin Caffe')  
+              {{-- DONE --}}
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Product</span></li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Menu</div>
+                </a>
 
-                  <ul class="menu-sub">
-                    <li class="menu-item">
-                      <a href="{{ route('menu') }}" class="menu-link">
-                        <div data-i18n="Without menu">Semua Menu</div>
-                      </a>
-                    </li>
-                  </ul>
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('menu') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Menu</div>
+                    </a>
+                  </li>
+                </ul>
 
-                  <ul class="menu-sub">
-                    <li class="menu-item">
-                      <a href="{{ route('menu.add') }}" class="menu-link">
-                        <div data-i18n="Without menu">Tambah Menu</div>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              @endif
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('menu.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Tambah Menu</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              {{-- DONE --}}
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Supply</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('supply') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Suplier</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('supply.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Tambah Suplier</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Keuangan</span></li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Manajemen Keuangan</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('menu') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Keuangan</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('menu.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Rekap Keuangan</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Karywan</span></li>
+              {{-- DOING --}}
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Shift Kerja</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('shift') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Shift Kerja</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('shift.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Tambah Shift Kerja</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Absensi</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('absensi') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Absensi</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('absensi.add.caffe') }}" class="menu-link">
+                      <div data-i18n="Without menu">Tambah Absensi</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Penggajian</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('gaji') }}" class="menu-link">
+                      <div data-i18n="Without menu">Semua Penggajian</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('gaji.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Tambah Penggajian</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            @endif
+
               
 
               @if (Auth::user()->position == 'Admin Kopi')  
@@ -212,18 +333,8 @@
                   </ul>
                 </li>
               @endif
-            @endif
+    
 
-            @if(Auth::user()->position == "Admin Caffe")
-              <!-- Components -->
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">Supplier</span></li>
-              <li class="menu-item">
-                <a href="/dashboard" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                  <div data-i18n="Layouts">Supply</div>
-                </a>
-              </li>
-            @endif
           </ul>
         </aside>
         <!-- / Menu -->

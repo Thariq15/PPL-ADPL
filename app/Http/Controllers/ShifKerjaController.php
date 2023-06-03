@@ -11,7 +11,11 @@ class ShifKerjaController extends Controller
     }
 
     public function add(){
-        return view('dashboard.sift.index');
+        return view('dashboard.sift.add');
+    }
+
+    public function edit(){
+        return view('dashboard.sift.edit');
     }
 
     public function store(){

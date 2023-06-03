@@ -21,7 +21,9 @@
                               <th class="sorting">Mulai</th>
                               <th class="sorting">Berakhir</th>
                               <th class="sorting">Status</th>
-                              <th class="sorting">Action</th>
+                              @if (Auth::user()->position == 'Karyawan')  
+                                <th class="sorting">Action</th>
+                              @endif
                           </tr>
                       </thead>
                       <tbody>
@@ -31,22 +33,24 @@
                             <td>Kerja Harian</td>
                             <td>08:00 AM</td>
                             <td>16:00 PM</td>
-                            <td>1
-                                <span class="badge badge-success">Masuk</span>
+                            <td>
+                                <span class="badge bg-success">Masuk</span>
                             </td>
                             <td>
-                                <a href="" class="btn btn-primary">
-                                    absen
-                                </a>
+                                @if (Auth::user()->position == 'Karyawam')
+                                    <a href="" class="btn btn-primary">
+                                        absen
+                                    </a>
+                                @endif
                             </td>
                         </tr>
 
-                        <tr>
+                        {{-- <tr>
                             <td>Lembur</td>
                             <td>08:00 AM</td>
                             <td>16:00 PM</td>
                             <td>
-                                <span class="badge badge-success">Masuk</span>
+                                <span class="badge bg-success">Masuk</span>
 
                             </td>
                             <td>
@@ -54,7 +58,7 @@
                                     absen
                                 </a>
                             </td>
-                        </tr>
+                        </tr> --}}
                       </tbody>
                     </table>
                   </div>

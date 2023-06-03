@@ -10,11 +10,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GajiKaryawanController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShifKerjaController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +76,10 @@ Route::middleware('auth')->group(function () {
   Route::prefix('absensi')->group(function () {
     Route::get('/', [AbsensiController::class, 'absen'])->name('absensi');
     Route::get('/add', [AbsensiController::class, 'add'])->name('absensi.add');
+    Route::get('/tambah', [AbsensiController::class, 'addCaffe'])->name('absensi.add.caffe');
   });
 
-  ROute::prefix('shift')->group(function () {
+  Route::prefix('shift')->group(function () {
     Route::get('/', [ShifKerjaController::class, 'index'])->name('shift');
     Route::get('/add', [ShifKerjaController::class, 'add'])->name('shift.add');
     Route::post('/store', [ShifKerjaController::class, 'store'])->name('shift.store');
@@ -85,6 +88,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}', [ShifKerjaController::class, 'delete'])->name('shift.delete');
   });
 
+
+  Route::prefix('supply')->group(function () {
+    Route::get('/', [SupplierController::class, 'index'])->name('supply');
+    Route::get('/add', [SupplierController::class, 'add'])->name('supply.add');
+    Route::post('/store', [SupplierController::class, 'store'])->name('supply.store');
+    Route::get('/edit', [SupplierController::class, 'edit'])->name('supply.edit');
+    Route::post('/update', [SupplierController::class, 'update'])->name('supply.update');
+    Route::get('/delete/{id}', [SupplierController::class, 'delete'])->name('supply.delete');
+  });
+
+
+  Route::prefix('gaji')->group(function (){
+    Route::get('/', [GajiKaryawanController::class, 'index'])->name('gaji');
+    Route::get('/tambah', [GajiKaryawanController::class, 'create'])->name('gaji.add');
+    Route::get('/edit/{id}', [GajiKaryawanController::class, 'edit'])->name('gaji.edit');
+  });
   Route::prefix('detail')->group(function () {
     Route::post('/delete', [PemesananController::class, 'deleteDetail'])->name('dt.delete');
   });

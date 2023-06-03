@@ -15,12 +15,18 @@
             <img src="{{ asset($item->image) }}" class="rounded img-thumbnail" style="height: 12rem; width: 100%; object-fit: cover!important;" alt="">
 
             <h4 class="card-title mt-2">{{ $item->name }}</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-            <span class="col text-start">
-              Rp. {{ number_format($item->price,0,',','.') }},00 ,-
-            </span>
+            <p>{{ $item->description }}</p>
+            <div class="row">
+              <span class="col text-start">
+                Rp. {{ number_format($item->price,0,',','.') }},00 ,-
+              </span>
+              <span class="col text-start">
+                Stok {{ $item->stock }} kg
+              </span>
+            </div>
+
             
-            <a href="{{ route('product.edit', $item->id) }}" class="btn btn-primary d-block mt-3">Edit</a>
+            <button href="{{ route('product.edit', $item->id) }}" class="btn btn-primary d-block mt-3">Pesan</button>
           </div>
         </div>
       </div>

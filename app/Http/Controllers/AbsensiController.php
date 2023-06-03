@@ -13,4 +13,9 @@ class AbsensiController extends Controller
     public function add(){
         return view('dashboard.kasir.absensi.absensi');
     }
+
+    public function addCaffe(){
+   
+        return view('dashboard.caffe.absensi.add');
+    }
 }
