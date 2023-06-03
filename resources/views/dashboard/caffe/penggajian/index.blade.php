@@ -24,23 +24,26 @@
                             </tr>
                         </thead>
                         <tbody>
-            
+                            
 
-                            <tr>
-                                <td>Sushi</td>
-                                <td>08-09-2023</td>
-                                <td>
-                                    <span class="badge bg-warning">Belum</span>
-                                </td>
-                                @if (Auth::user()->position == 'Admin Caffe')
-                      
-                                <td>
-                                    <a href="{{ route('gaji.add') }}" class="btn btn-primary">Gaji</a>
-                                    {{--  jika status sudah di gaji saja --}}
-                                    <a href="{{ route('gaji.edit', 1) }}" class="btn btn-warning">Edit</a>
-                                </td>
-                            @endif
-                            </tr>
+                            @foreach ($data as $item)
+                            
+                                <tr>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->bulan }}</td>
+                                    <td>
+                                        <span class="badge bg-success">sudah</span>
+                                    </td>
+                                    @if (Auth::user()->position == 'Admin Caffe')
+                            
+                                        <td>
+                            
+                                            <a href="{{ route('gaji.edit', 1) }}" class="btn btn-warning">Edit</a>
+                                        </td>
+                                    @endif
+                                                        </tr>
+                                
+                            @endforeach
 
                   
                         </tbody>

@@ -34,6 +34,18 @@
                 <label for="">End</label>
                 <input type="time" name="end" class="form-control">
             </div>
+            <div class="mb-3">
+              <label for="">Hari</label>
+              <select name="hari" class="form-control">
+                <option value="senin">senin</option>
+                <option value="selasa">selasa</option>
+                <option value="rabu">rabu</option>
+                <option value="kamis">kamis</option>
+                <option value="jum'at">jum'at</option>
+                <option value="sabtu">sabtu</option>
+                <option value="minggu">minggu</option>
+              </select>
+            </div>
             <button type="submit" class="btn btn-primary">Send</button>
           </form>
         </div>

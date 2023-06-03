@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gaji;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GajiKaryawanController extends Controller
@@ -11,7 +13,9 @@ class GajiKaryawanController extends Controller
      */
     public function index()
     {
-        return view('dashboard.caffe.penggajian.index');
+        $data = Gaji::with('user')->get();
+    
+        return view('dashboard.caffe.penggajian.index', ['data' => $data]);
     }
 
     /**
@@ -19,7 +23,8 @@ class GajiKaryawanController extends Controller
      */
     public function create()
     {
-        return view('dashboard.caffe.penggajian.add');
+        $data = User::get();
+        return view('dashboard.caffe.penggajian.add', ['data' => $data]);
     }
 
     /**
@@ -27,7 +32,13 @@ class GajiKaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gaji::create([
+            "user_id" => $request->user_id,
+            "gaji" => $request->gaji,
+            "bulan" => $request->month,
+        ]);
+
+        return redirect()->route('gaji.add')->with('success-add', 'Gaji Berhasil ditambah');
     }
 
     /**
@@ -43,15 +54,23 @@ class GajiKaryawanController extends Controller
      */
     public function edit(string $id)
     {
-        return view('dashboard.caffe.penggajian.edit');
+        $data['user'] = User::get();
+        $data['gaji'] = Gaji::find($id); 
+        return view('dashboard.caffe.penggajian.edit', ['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $gaji = Gaji::find($request->id);
+        $gaji->bulan = $request->bulan;
+        $gaji->gaji = $request->gaji;
+        $gaji->save();
+
+        return redirect()->route('gaji.edit', $request->id)->with('success-updated', 'Gaji Berhasil diupdate');
+
     }
 
     /**

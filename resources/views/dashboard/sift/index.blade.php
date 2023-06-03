@@ -20,6 +20,7 @@
                                 <th class="sorting">Judul</th>
                                 <th class="sorting">Mulai</th>
                                 <th class="sorting">Berakhir</th>
+                                <th class="sorting">Hari</th>
                                 @if (Auth::user()->position == 'Admin Caffe')
                                     <th class="sorting">Action</th>
                                 @endif
@@ -33,6 +34,7 @@
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->start }}</td>
                                     <td>{{ $item->end }}</td>
+                                    <td>{{ $item->hari }}</td>
                                     @if (Auth::user()->position == 'Admin Caffe')
                         
                                     <td>

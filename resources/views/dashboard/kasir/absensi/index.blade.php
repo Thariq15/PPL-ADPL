@@ -17,33 +17,40 @@
                     <table id="example" class="datatables-basic table border-top" style="width:100%">
                       <thead>
                           <tr>
-                              <th class="sorting">Judul</th>
-                              <th class="sorting">Mulai</th>
-                              <th class="sorting">Berakhir</th>
-                              <th class="sorting">Status</th>
-                              @if (Auth::user()->position == 'Karyawan')  
-                                <th class="sorting">Action</th>
-                              @endif
+                                @if (Auth::user()->position == 'Admin Caffe')
+                                    <th class="sorting">Nama</th>
+                                @endif
+                                <th class="sorting">Judul</th>
+                                <th class="sorting">Mulai</th>
+                                <th class="sorting">Berakhir</th>
+                                <th class="sorting">Hari</th>
+                            
+                                <th class="sorting">
+                                    Status
+                                </th>
+                                
+                 
                           </tr>
                       </thead>
                       <tbody>
-          
+                        
 
-                        <tr>
-                            <td>Kerja Harian</td>
-                            <td>08:00 AM</td>
-                            <td>16:00 PM</td>
-                            <td>
-                                <span class="badge bg-success">Masuk</span>
-                            </td>
-                            <td>
-                                @if (Auth::user()->position == 'Karyawam')
-                                    <a href="" class="btn btn-primary">
-                                        absen
-                                    </a>
+                        @foreach ($data as $item)                            
+                            <tr>
+                                @if (Auth::user()->position == 'Admin Caffe')
+                                    <th class="sorting">{{ $item->user->name }}</th>
                                 @endif
-                            </td>
-                        </tr>
+                                <td>{{ $item->shift->judul }}</td>
+                                <td>{{ $item->shift->start }}</td>
+                                <td>{{ $item->shift->end }}</td>
+                                <td>{{ $item->shift->hari }}</td>
+                                <td>
+                                    <span class="badge bg-success">{{ $item->status }}</span>
+                                </td>
+                  
+                            </tr>
+                        @endforeach
+
 
                         {{-- <tr>
                             <td>Lembur</td>

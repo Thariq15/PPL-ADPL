@@ -10,4 +10,8 @@ class Shift extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function absensi(){
+        return $this->hasMany(Absensi::class, 'shift_id');
+    }
 }

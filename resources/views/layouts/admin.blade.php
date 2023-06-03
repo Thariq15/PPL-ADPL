@@ -235,7 +235,7 @@
                 </ul>
               </li>
 
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">Karywan</span></li>
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Karyawan</span></li>
               {{-- DOING --}}
               <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -273,14 +273,6 @@
                     </a>
                   </li>
                 </ul>
-
-                <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="{{ route('absensi.add.caffe') }}" class="menu-link">
-                      <div data-i18n="Without menu">Tambah Absensi</div>
-                    </a>
-                  </li>
-                </ul>
               </li>
 
               <li class="menu-item">
@@ -310,6 +302,8 @@
               
 
               @if (Auth::user()->position == 'Admin Kopi')  
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Produk</span></li>
+
                 <li class="menu-item">
                   <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -328,6 +322,53 @@
                     <li class="menu-item">
                       <a href="{{ route('product.add') }}" class="menu-link">
                         <div data-i18n="Without menu">Tambah Produk</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Keuangan</span></li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Manajemen Keuangan</div>
+                  </a>
+  
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('menu') }}" class="menu-link">
+                        <div data-i18n="Without menu">Semua Keuangan</div>
+                      </a>
+                    </li>
+                  </ul>
+  
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('menu.add') }}" class="menu-link">
+                        <div data-i18n="Without menu">Rekap Keuangan</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Transaksi</div>
+                  </a>
+  
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('menu') }}" class="menu-link">
+                        <div data-i18n="Without menu">Semua Keuangan</div>
+                      </a>
+                    </li>
+                  </ul>
+  
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="{{ route('menu.add') }}" class="menu-link">
+                        <div data-i18n="Without menu">Rekap Keuangan</div>
                       </a>
                     </li>
                   </ul>

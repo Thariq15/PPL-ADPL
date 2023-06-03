@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AbsensiController::class, 'absen'])->name('absensi');
     Route::get('/add', [AbsensiController::class, 'add'])->name('absensi.add');
     Route::get('/tambah', [AbsensiController::class, 'addCaffe'])->name('absensi.add.caffe');
+    Route::post('/store', [AbsensiController::class, 'storeCaffe'])->name('absensi.store');
+
   });
 
   Route::prefix('shift')->group(function () {
@@ -102,6 +104,8 @@ Route::middleware('auth')->group(function () {
   Route::prefix('gaji')->group(function (){
     Route::get('/', [GajiKaryawanController::class, 'index'])->name('gaji');
     Route::get('/tambah', [GajiKaryawanController::class, 'create'])->name('gaji.add');
+    Route::post('/store', [GajiKaryawanController::class, 'store'])->name('gaji.store');
+    Route::post('/update', [GajiKaryawanController::class, 'update'])->name('gaji.update');
     Route::get('/edit/{id}', [GajiKaryawanController::class, 'edit'])->name('gaji.edit');
   });
   Route::prefix('detail')->group(function () {

@@ -26,11 +26,13 @@ class ShifKerjaController extends Controller
             "judul" => ['required'],
             "start" => ['required'],
             "end" => ['required'],
+            "hari" => ['required']
         ]);
         Shift::create([
             "judul" => $request->judul,
             "start" => $request->start,
             "end" => $request->end,
+            "hari" => $request->hari,
         ]);
         return redirect()->route('shift.add')->with('success-add', 'Shift Kerja berhasil ditambah');
     }
@@ -40,13 +42,16 @@ class ShifKerjaController extends Controller
             "judul" => ['required'],
             "start" => ['required'],
             "end" => ['required'],
+            "hari" => ['required']
+
         ]);
         $shift = Shift::find($request->id);
         $shift->judul = $request->judul;
         $shift->start = $request->start;
         $shift->end = $request->end;
+        $shift->hari = $request->hari;
         $shift->save();
-        return redirect()->route('shift.edit', $request->id)->with('success-updated', 'Shift Kerja diupdate ditambah');
+        return redirect()->route('shift.edit', $request->id)->with('success-updated', 'Shift Kerja diupdate');
     }
 
     public function delete(){

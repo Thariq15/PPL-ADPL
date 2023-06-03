@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensis', function (Blueprint $table) {
+        Schema::create('keuangans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shift_id');
-            $table->foreignId('user_id');
-            $table->enum('status', ['masuk', 'ijin', 'telat', 'alpha']);
+            $table->string('keterangan');
+            $table->integer('nominal');
+            $table->enum('jenis', ['pengeluaran', 'pemasukan']);
+            $table->date('tanggal');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensis');
+        Schema::dropIfExists('keuangans');
     }
 };

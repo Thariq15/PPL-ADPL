@@ -20,19 +20,23 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           @endif
-          <form method="post" enctype="multipart/form-data">
+          <form method="post" action="{{ route('gaji.store') }}">
             @csrf
             <div class="mb-3">
                 <label for="">Karyawan</label>
-                <select name="" id="" class="form-control">
-                    <option value="">Sandi</option>
-                    <option value="">Afif</option>
-                    <option value="">Dito</option>
+                <select name="user_id" id="" class="form-control">
+                    @foreach ($data as $item)  
+                      <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label for="">Gaji</label>
                 <input type="number" class="form-control" name="gaji">
+            </div>
+            <div class="mb-3">
+                <label for="">bulan</label>
+                <input type="month" class="form-control" name="month">
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
           </form>

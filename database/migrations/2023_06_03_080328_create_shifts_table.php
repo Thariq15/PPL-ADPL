@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->time('start');
             $table->time('end');
+            $table->string('hari');
             $table->timestamps();
         });
     }
