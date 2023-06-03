@@ -11,7 +11,14 @@ class PemesananController extends Controller
 {
     public function index()
     {
-        $data = Transaktion::with('detail_transaktions')->where('status', '!=', 'cancel')->get();
+        $data = Transaktion::with('detail_transaktions')->where('status', '!=', 'cancel')->where('status', '!=','done')->get();
+        // dd($data);
+        return view('dashboard.kasir.pesanan.index', ["data" => $data]);
+    }
+
+    public function riwayat()
+    {
+        $data = Transaktion::with('detail_transaktions')->where('status', 'done')->get();
         // dd($data);
         return view('dashboard.kasir.pesanan.index', ["data" => $data]);
     }
@@ -37,4 +44,5 @@ class PemesananController extends Controller
         // dd($data);
         return view('dashboard.kasir.pesanan.tambah', ['data' => $data]);
     }
+
 }

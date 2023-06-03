@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
@@ -62,8 +63,15 @@ Route::middleware('auth')->group(function () {
 
   Route::prefix('kasir')->group(function () {
     Route::get('/pemesanan', [PemesananController::class, 'index'])->name('kasir');
+    Route::get('/pemesanan/riwayat', [PemesananController::class, 'riwayat'])->name('kasir.riwayat');
     Route::get('/pemesanan/tambah', [PemesananController::class, 'add'])->name('kasir.add');
     Route::post('/pemesanan/update', [PemesananController::class, 'update'])->name('pemesanan.update');
+    Route::post('/pemesanan/store', [PemesananController::class, 'store'])->name('kasir.store');
+  });
+
+  Route::prefix('absensi')->group(function () {
+    Route::get('/', [AbsensiController::class, 'absen'])->name('absensi');
+    Route::get('/add', [AbsensiController::class, 'add'])->name('absensi.add');
   });
 
   Route::prefix('detail')->group(function () {

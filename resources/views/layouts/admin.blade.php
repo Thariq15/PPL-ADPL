@@ -67,38 +67,94 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="/" class="menu-link">
+              <a href="/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
             @if (Auth::user()->position == 'Karyawan')
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Kasir</span></li>
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Produk</span></li>
 
               <!-- Dashboard -->
               <li class="menu-item">
                 <a href="{{ route('menu') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Menu</div>
+                  <div data-i18n="Analytics">Produk</div>
                 </a>
               </li>
 
-              <!-- Dashboard -->
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Working</span></li>
               <li class="menu-item">
-                <a href="{{ route('kasir') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Pesanan</div>
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Absensi</div>
                 </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('absensi.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Menambah Absensi</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('absensi') }}" class="menu-link">
+                      <div data-i18n="Without menu">Melihat Absensi</div>
+                    </a>
+                  </li>
+                </ul>
               </li>
 
-              <!-- Dashboard -->
               <li class="menu-item">
-                <a href="{{ route('menu') }}" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Riwayat Pesanan</div>
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Shift Kerja</div>
                 </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('kasir.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Melihat Absensi</div>
+                    </a>
+                  </li>
+                </ul>
               </li>
+
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Kasir</span></li>
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">Kasir</div>
+                </a>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('kasir.add') }}" class="menu-link">
+                      <div data-i18n="Without menu">Menambah Data Pesanan</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('kasir') }}" class="menu-link">
+                      <div data-i18n="Without menu">Melihat Data pesanan</div>
+                    </a>
+                  </li>
+                </ul>
+
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="{{ route('kasir.riwayat') }}" class="menu-link">
+                      <div data-i18n="Without menu">Riwayat Data pesanan</div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
             @endif
 
             @if (Auth::user()->position != 'Karyawan')                

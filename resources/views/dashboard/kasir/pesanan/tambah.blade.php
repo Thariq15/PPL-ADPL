@@ -37,8 +37,8 @@
                 </div>
                 <div class="row mb-3">
                     <form>
-                        <input type="text" placeholder="Masukan nama pelanggan" class="form-control mb-3">
-                        <button type="button" class="btn btn-primary">
+                        <input type="text" id="nama_pelanggan" placeholder="Masukan nama pelanggan" class="form-control mb-3">
+                        <button type="button" id="tombol_pesan" class="btn btn-primary">
                             Pesan
                         </button>
                     </form>
@@ -102,7 +102,7 @@
 
         let allPesanan = [];
         var htmlElement = ""
-
+        let jumlah = 0
         $( ".tombolMenu" ).on( "click", function() {
             htmlElement = ""
             const count = $("#jumlah-menu"+$(this).attr('data-id')).val()
@@ -132,11 +132,11 @@
             allPesanan.push(menu)
             console.log(allPesanan)
             allPesanan.map((menu) => {
-                htmlElement += `<div class="col-md-12 mb-2"><div class="card"><div class="card-body row"><div class="col-md-3"><img src="${menu["img"]}" class="rounded img-thumbnail" style="height: 100%; width: 100%; object-fit: cover!important;" alt=""> </div><div class="col-md-8"> <span>${menu["name"]}</span><br><span>Rp. ${menu["price"]}</span><br> <span>jumlah : ${menu["count"]}</span><br> <span>Total : ${menu["amount"]}</span></div></div></div></div>`
+                htmlElement += `<div class="col-md-12 mb-2"><div class="card"><div class="card-body row"><div class="col-md-3"><img src="https://127.0.0.0:8000/${menu["img"]}" class="rounded img-thumbnail" style="height: 100%; width: 100%; object-fit: cover!important;" alt=""> </div><div class="col-md-8"> <span>${menu["name"]}</span><br><span>Rp. ${menu["price"]}</span><br> <span>jumlah : ${menu["count"]}</span><br> <span>Total : ${menu["amount"]}</span></div></div></div></div>`
                 $("#semuakeranjang").html(htmlElement)
             })
 
-            var jumlah = 0
+            jumlah = 0
             allPesanan.map(item => {
                 jumlah += item["amount"]
             })
@@ -149,6 +149,27 @@
             $("#semuakeranjang").html('<span>Belum ada pesanan</span>')
             $('.total_pembayaran').html('<span>belum ada</span>')
         }
+
+        $('#tombol_pesan').on('click', () => {
+
+            if(allPesanan.length == 0){
+                alert("Harus pilih pesanan dulu")
+                return
+            }
+            let name = $('#nama_pelanggan').val();
+            $.ajax({
+                method: 'POST',
+                url: "/api/kasir/pemesanan/store",
+                data: {
+                    name,
+                    data: allPesanan,
+                    amount: jumlah
+                 },
+                success: (response) => {
+                    console.log(response)
+                }
+            })
+        })
 
     </script>
 @endsection

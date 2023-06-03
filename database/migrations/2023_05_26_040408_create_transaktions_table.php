@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('buyer');
             $table->enum('status', ['deliver', 'done', 'proccess', 'cancel'])->default('proccess');
+            $table->string('amount');
             $table->timestamps();
         });
     }
