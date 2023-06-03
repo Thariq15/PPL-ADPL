@@ -14,6 +14,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShifKerjaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,6 +74,15 @@ Route::middleware('auth')->group(function () {
   Route::prefix('absensi')->group(function () {
     Route::get('/', [AbsensiController::class, 'absen'])->name('absensi');
     Route::get('/add', [AbsensiController::class, 'add'])->name('absensi.add');
+  });
+
+  ROute::prefix('shift')->group(function () {
+    Route::get('/', [ShifKerjaController::class, 'index'])->name('shift');
+    Route::get('/add', [ShifKerjaController::class, 'add'])->name('shift.add');
+    Route::post('/store', [ShifKerjaController::class, 'store'])->name('shift.store');
+    Route::get('/edit', [ShifKerjaController::class, 'edit'])->name('shift.edit');
+    Route::post('/update', [ShifKerjaController::class, 'update'])->name('shift.update');
+    Route::get('/delete/{id}', [ShifKerjaController::class, 'delete'])->name('shift.delete');
   });
 
   Route::prefix('detail')->group(function () {

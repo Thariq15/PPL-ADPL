@@ -116,7 +116,7 @@
 
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="{{ route('kasir.add') }}" class="menu-link">
+                    <a href="{{ route('shift') }}" class="menu-link">
                       <div data-i18n="Without menu">Melihat Absensi</div>
                     </a>
                   </li>
