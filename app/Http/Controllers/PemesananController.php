@@ -37,6 +37,14 @@ class PemesananController extends Controller
                     'jenis' => 'pengeluaran',
                     'tanggal' => date('Y-m-d')
                 ]);
+
+                Keuangan::create([
+                    'keterangan' => 'kopi terjual',
+                    'role' => 'Admin Kopi',
+                    'nominal' => $req->nominal,
+                    'jenis' => 'pemasukan',
+                    'tanggal' => date('Y-m-d')
+                ]);
             }
             return redirect()->route('transaksi')->with('updated', "Data berhasil dirubah");
         }

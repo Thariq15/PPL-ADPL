@@ -18,7 +18,10 @@ class KeuanganController extends Controller
     public function index()
     {
         $data = Keuangan::where('role', Auth::user()->position)->get();
-        return view('dashboard.admin.keuangan.index', ['data' => $data]);
+        $pengeluaran =  Keuangan::where('role', Auth::user()->position)->where('jenis', 'pengeluaran')->get()->sum('nominal');
+        $pemasukan =  Keuangan::where('role', Auth::user()->position)->where('jenis', 'pemasukan')->get()->sum('nominal');
+     
+        return view('dashboard.admin.keuangan.index', ['data' => $data, 'total' => $pemasukan - $pengeluaran]);
     }
 
     /**
