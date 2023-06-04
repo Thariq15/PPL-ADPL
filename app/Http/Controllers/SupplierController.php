@@ -84,9 +84,16 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->stock);
+        $supply = DetailTransaktion::find($request->id);
+  
+        $supply->count = $request->stock;
+        $supply->amount = $request->stock * $supply->price;
+        $supply->save();
+
+        return redirect()->route('supply')->with('success-updated', 'Anda berhasil mengubah data.');
     }
 
     /**
