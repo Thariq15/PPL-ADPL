@@ -119,6 +119,7 @@ Route::middleware('auth')->group(function () {
 
   Route::prefix('transaksi')->group(function () {
     Route::get('/', [TransaktionController::class, 'index'])->name('transaksi');
+    Route::get('/riwayat', [TransaktionController::class, 'riwayat'])->name('transaksi.riwayat');
     Route::get('/tambah', [KeuanganController::class, 'create'])->name('transaksi.add');
     Route::get('/store', [KeuanganController::class, 'store'])->name('transaksi.store');
   });

@@ -365,13 +365,13 @@
                     </li>
                   </ul>
   
-                  {{-- <ul class="menu-sub">
+                  <ul class="menu-sub">
                     <li class="menu-item">
-                      <a href="{{ route('transaksi.add') }}" class="menu-link">
-                        <div data-i18n="Without menu">Rekap Keuangan</div>
+                      <a href="{{ route('transaksi.riwayat') }}" class="menu-link">
+                        <div data-i18n="Without menu">Riwayat Transaksi</div>
                       </a>
                     </li>
-                  </ul> --}}
+                  </ul>
                 </li>
               @endif
     
