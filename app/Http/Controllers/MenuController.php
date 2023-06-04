@@ -63,8 +63,32 @@ class MenuController extends Controller
         return redirect()->route('menu.add')->with('success-add', 'Menu telah berhasil ditambah didaftar menu');
     }
 
-    public function update()
+    public function update(Request $request)
     {
-        return view('dashboard.menu.index');
+        $request->validate([
+            "name" => ['required', 'max:30', 'min:3'],
+            "price" => ['required', 'numeric'],
+            "description" => ['required'],
+            "status" => ['required'],
+        ]);
+
+        $user = Menu::find($request->id);
+        $user->name = $request->name;
+        if($request->file('image')){
+            $file = $request->file('image');
+            $random = Str::random(8);
+            $extension = $file->getClientOriginalExtension();
+            $name = $random . '.' . $extension;
+            $destiny = 'assets/img/menu';
+            $file->move($destiny, $name);
+            $path = $destiny . "/" . $name;
+            $user->image = $path;
+        }
+        $user->description = $request->description;
+        $user->price = $request->price;
+        $user->status = $request->status;
+        $user->save();
+
+        return redirect()->route('menu.edit', $request->id)->with('success-updated', 'Menu telah berhasil diupdate didaftar menu');
     }
 }

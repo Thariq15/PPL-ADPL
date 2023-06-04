@@ -3,25 +3,26 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="fw-bold py-3 mb-4">
-    Tambah Menu Caffe
+    Edit Menu Caffe
   </h4>
 
   <div class="row">
     <div class="col-xl">
       <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Tambah Menu</h5>
+          <h5 class="mb-0">Edit Menu</h5>
          
         </div>
         <div class="card-body">
-          @if (session()->has('success-add'))        
+          @if (session()->has('success-updated'))        
             <div class="alert alert-success alert-dismissible" role="alert">
-              {{ session('success-add') }}
+              {{ session('success-updated') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           @endif
-          <form action="{{ route('menu.store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('menu.update') }}" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="id" value="{{ $menu->id }}">
             <div class="mb-3">
               <label class="form-label" for="basic-default-fullname">Nama Menu</label>
               <input type="text" class="form-control" id="basic-default-fullname" value="{{ $menu->name }}" name="name" placeholder="John Doe">
@@ -52,10 +53,14 @@
                 <option @if ($menu->status == "Maintaince") selected @endif value="Maintaince">Maintaince</option>
               </select>
             </div>
-            {{-- <div class="mb-3">
+
+            <div class="mb-3">
               <label for="formFile" class="form-label">Foto Menu</label>
               <input class="form-control" name="image" type="file" id="formFile">
-            </div> --}}
+            </div>
+            <div class="mb-3">
+              <img src="{{ asset($menu->image) }}" width="150" alt="gambar">
+            </div>
             <div class="mb-3">
               <label class="form-label" for="basic-default-message">Desikripsi</label>
               <textarea name="description" id="basic-default-message" class="form-control" placeholder="Berikan keterangan sesuai menu yg anda tambah">{{ $menu->description }}</textarea>
