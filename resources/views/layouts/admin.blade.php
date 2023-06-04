@@ -220,7 +220,7 @@
 
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="{{ route('menu') }}" class="menu-link">
+                    <a href="{{ route('keuangan') }}" class="menu-link">
                       <div data-i18n="Without menu">Semua Keuangan</div>
                     </a>
                   </li>
@@ -228,7 +228,7 @@
 
                 <ul class="menu-sub">
                   <li class="menu-item">
-                    <a href="{{ route('menu.add') }}" class="menu-link">
+                    <a href="{{ route('keuangan.add') }}" class="menu-link">
                       <div data-i18n="Without menu">Rekap Keuangan</div>
                     </a>
                   </li>
@@ -359,7 +359,7 @@
   
                   <ul class="menu-sub">
                     <li class="menu-item">
-                      <a href="{{ route('menu') }}" class="menu-link">
+                      <a href="{{ route('keuangan') }}" class="menu-link">
                         <div data-i18n="Without menu">Semua Keuangan</div>
                       </a>
                     </li>
@@ -367,7 +367,7 @@
   
                   <ul class="menu-sub">
                     <li class="menu-item">
-                      <a href="{{ route('menu.add') }}" class="menu-link">
+                      <a href="{{ route('keuangan.add') }}" class="menu-link">
                         <div data-i18n="Without menu">Rekap Keuangan</div>
                       </a>
                     </li>

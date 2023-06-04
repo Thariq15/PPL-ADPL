@@ -11,6 +11,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GajiKaryawanController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProductController;
@@ -108,6 +109,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/update', [GajiKaryawanController::class, 'update'])->name('gaji.update');
     Route::get('/edit/{id}', [GajiKaryawanController::class, 'edit'])->name('gaji.edit');
   });
+
+  Route::prefix('keuangan')->group(function () {
+    Route::get('/', [KeuanganController::class, 'index'])->name('keuangan');
+    Route::get('/tambah', [KeuanganController::class, 'create'])->name('keuangan.add');
+  });
+
   Route::prefix('detail')->group(function () {
     Route::post('/delete', [PemesananController::class, 'deleteDetail'])->name('dt.delete');
   });

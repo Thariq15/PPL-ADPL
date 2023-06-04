@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gaji;
+use App\Models\Keuangan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class GajiKaryawanController extends Controller
 {
@@ -23,7 +25,7 @@ class GajiKaryawanController extends Controller
      */
     public function create()
     {
-        $data = User::get();
+        $data = User::where('position', 'Karyawan')->get();
         return view('dashboard.caffe.penggajian.add', ['data' => $data]);
     }
 
@@ -36,6 +38,13 @@ class GajiKaryawanController extends Controller
             "user_id" => $request->user_id,
             "gaji" => $request->gaji,
             "bulan" => $request->month,
+        ]);
+
+        Keuangan::create([
+            'keterangan' => 'Keterangan gaji',
+            'nominal' => $request->gaji,
+            'jenis' => 'pengeluaran',
+            'tanggal' => Date('Y-m-d'),
         ]);
 
         return redirect()->route('gaji.add')->with('success-add', 'Gaji Berhasil ditambah');

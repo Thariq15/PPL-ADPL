@@ -12,7 +12,6 @@ class PemesananController extends Controller
     public function index()
     {
         $data = Transaktion::with('detail_transaktions')->where('status', '!=', 'cancel')->where('status', '!=','done')->get();
-        // dd($data);
         return view('dashboard.kasir.pesanan.index', ["data" => $data]);
     }
 
@@ -28,7 +27,6 @@ class PemesananController extends Controller
         $transaksi = Transaktion::find($req->id);
         $transaksi->status = $req->status;
         $transaksi->save();
-
         return redirect()->route('kasir')->with('updated', "Data " . $transaksi->buyer . " berhasil dirubah");
     }
 
