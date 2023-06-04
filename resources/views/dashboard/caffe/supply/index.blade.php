@@ -26,7 +26,47 @@
             </div>
 
             
-            <button href="{{ route('product.edit', $item->id) }}" class="btn btn-primary d-block mt-3">Pesan</button>
+            <button 
+              class="btn btn-primary d-block mt-3"
+              data-bs-toggle="modal"
+              data-bs-target="#pesan{{ $item->id }}"
+              >Pesan</button>
+              <!-- Modal -->
+              <div class="modal fade" id="pesan{{ $item->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modalCenterTitle">
+                        Pesanan dari {{ $item->name }}
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" action="{{ route('supply.store') }}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $item->id }}">
+                        <input type="hidden" name="name" value="{{ $item->name }}">
+                        <input type="hidden" name="price" value="{{ $item->price }}">
+                        <div class="mb-3">
+                          <input type="number" name="stock" class="form-control">
+                        </div>
+                        <button class="btn btn-primary">Pesan</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
           </div>
         </div>
       </div>

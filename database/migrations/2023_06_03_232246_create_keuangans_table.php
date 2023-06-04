@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('nominal');
             $table->enum('jenis', ['pengeluaran', 'pemasukan']);
             $table->date('tanggal');
+            $table->enum('role', ['Admin Kopi', 'Admin Caffe']);
             $table->timestamps();
         });
     }

@@ -167,6 +167,10 @@
                  },
                 success: (response) => {
                     console.log(response)
+                    if(response['msg'] == 'Data berhasil ditambah'){
+                        alert('berhasil ditambah pesanannya')
+                        window.location = '/kasir/pemesanan/tambah'
+                    }
                 }
             })
         })

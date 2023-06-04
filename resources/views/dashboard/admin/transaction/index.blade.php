@@ -4,7 +4,7 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
   <h4 class="fw-bold py-3 mb-4">
-    Menambah data rekap keuangan
+    Semua Pemesanan
   </h4>
 
   <div class="row">
@@ -13,18 +13,14 @@
         <div class="card-header">
           <div class="row justify-content-end mb-3">
             <div class="col-md-2">
-              <form action="{{ route('keuangan.store') }}">
-                @csrf
-                <button class="btn btn-success">Rekap Semua</button>
-              </form>
-          
+
             </div>
           </div>
-          @if(session()->has('success-add'))                
+          @if(session()->has('updated'))                
             <div class="row">
               <div class="col">
                 <div class="alert alert-success alert-dismissible" role="alert">
-                  {{ session('success-add') }}
+                  {{ session('updated') }}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               </div>
@@ -48,7 +44,7 @@
             <thead>
                 <tr>
                     <th class="sorting">Name</th>
-                    <th class="sorting">Status Rekap</th>
+                    <th class="sorting">Antrian</th>
                     <th class="sorting">Status</th>
                     <th class="sorting">Amout</th>
                     <th class="sorting">Action</th>
@@ -57,11 +53,13 @@
             <tbody>
 
               @foreach ($data as $item)
+                <?php $jumlah = 0; ?>
+                @foreach ($item->detail_transaktions as $dt)
+                  <?php $jumlah += $dt->amount ?>
+                @endforeach
                 <tr>
                   <td>{{ $item->buyer }}</td>
-                  <td>
-                    <span class="badge btn-warning">{{ $item->status_rekap }}</span>
-                  </td>
+                  <td>{{ date('Dd', strtotime(date('d-m-Y'))).$item->id }}</td>
                   <td>
                     @if ($item->status == 'proccess')
                         
@@ -112,6 +110,7 @@
                           <form action="{{ route('pemesanan.update') }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $item->id }}">
+                            <input type="hidden" name="nominal" value="{{ $jumlah }}">
                             <div class="mb-3">
                               <label for="defaultSelect" class="form-label">
                                 Update Status
@@ -137,10 +136,7 @@
                     </div>
                   </div>
                   </td>
-                  <?php $jumlah = 0; ?>
-                  @foreach ($item->detail_transaktions as $dt)
-                    <?php $jumlah += $dt->amount ?>
-                  @endforeach
+         
                   <td>Rp. {{ number_format($jumlah, 0, '.') }}</td>
                   <td>
                     <button
@@ -176,7 +172,7 @@
                                     <th>jumlah</th>
                                     <th>harga</th>
                                     <th>total</th>
-                                    <th>Action</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -187,13 +183,7 @@
                                 <td>{{ $dt->count + 0 }}</td>
                                 <td>Rp. {{ number_format($dt->price, 0, ',', '.') }}</td>
                                 <td>{{ number_format($dt->amount, 0, ',', '.') }}</td>
-                                <td>
-                                  <form action="{{ route('dt.delete') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" value="{{ $dt->id }}" name="id">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                  </form>
-                                </td>
+                                
                               </tr>
 
                               @endforeach

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailTransaktion;
+use App\Models\Keuangan;
 use App\Models\Transaktion;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use Illuminate\Support\Facades\Auth;
 
 class PemesananController extends Controller
 {
@@ -18,7 +20,6 @@ class PemesananController extends Controller
     public function riwayat()
     {
         $data = Transaktion::with('detail_transaktions')->where('status', 'done')->get();
-        // dd($data);
         return view('dashboard.kasir.pesanan.index', ["data" => $data]);
     }
 
@@ -27,6 +28,20 @@ class PemesananController extends Controller
         $transaksi = Transaktion::find($req->id);
         $transaksi->status = $req->status;
         $transaksi->save();
+        if(Auth::user()->position == 'Admin Kopi'){
+            if($req->status == 'done'){
+                Keuangan::create([
+                    'keterangan' => 'Membayar barang habis supply',
+                    'role' => 'Admin Caffe',
+                    'nominal' => $req->nominal,
+                    'jenis' => 'pengeluaran',
+                    'tanggal' => date('Y-m-d')
+                ]);
+            }
+            return redirect()->route('transaksi')->with('updated', "Data berhasil dirubah");
+        }
+    
+    
         return redirect()->route('kasir')->with('updated', "Data " . $transaksi->buyer . " berhasil dirubah");
     }
 
@@ -39,7 +54,6 @@ class PemesananController extends Controller
 
     public function add(){
         $data = Menu::get();
-        // dd($data);
         return view('dashboard.kasir.pesanan.tambah', ['data' => $data]);
     }
 

@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShifKerjaController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransaktionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +114,13 @@ Route::middleware('auth')->group(function () {
   Route::prefix('keuangan')->group(function () {
     Route::get('/', [KeuanganController::class, 'index'])->name('keuangan');
     Route::get('/tambah', [KeuanganController::class, 'create'])->name('keuangan.add');
+    Route::get('/store', [KeuanganController::class, 'store'])->name('keuangan.store');
+  });
+
+  Route::prefix('transaksi')->group(function () {
+    Route::get('/', [TransaktionController::class, 'index'])->name('transaksi');
+    Route::get('/tambah', [KeuanganController::class, 'create'])->name('transaksi.add');
+    Route::get('/store', [KeuanganController::class, 'store'])->name('transaksi.store');
   });
 
   Route::prefix('detail')->group(function () {

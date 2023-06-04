@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransaktion;
 use App\Models\Keuangan;
 use App\Models\Transaktion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 
 class KeuanganController extends Controller
 {
@@ -13,7 +17,7 @@ class KeuanganController extends Controller
      */
     public function index()
     {
-        $data = Keuangan::get();
+        $data = Keuangan::where('role', Auth::user()->position)->get();
         return view('dashboard.admin.keuangan.index', ['data' => $data]);
     }
 
@@ -22,7 +26,7 @@ class KeuanganController extends Controller
      */
     public function create()
     {
-        $data = Transaktion::where('status', 'done')->where('status_rekap', 'belum')->get();
+        $data = Transaktion::where('status', 'done')->where('status_rekap', 'belum')->where('role', 'Admin Caffe')->get();
         return view('dashboard.admin.keuangan.add', ['data' => $data]);
     }
 
@@ -31,7 +35,24 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function(){
+            $dt = Transaktion::with('detail_transaktions')->where('status_rekap', 'belum')->where('status', 'done')->where('role', 'Admin Caffe')->get();
+            $jumlah = 0;
+            foreach ($dt as $item) {
+                $jumlah += $item->detail_transaktions->sum('amount');
+                $tr = Transaktion::find($item->id);
+                $tr->status_rekap = 'sudah';
+                $tr->save();
+            }
+            $keuangan = Keuangan::create([
+                'keterangan' => 'Rekap transaksi kasir',
+                'nominal' => $jumlah,
+                'tanggal' => Date('Y-m-d'),
+                'jenis' => 'pemasukan',
+                'role' => 'Admin Caffe'
+            ]);
+        });
+        return redirect()->route('keuangan.add')->with('success-add', 'Rekap berhasil ditambah ke data keuangan');
     }
 
     /**

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransaktion;
 use App\Models\Product;
 use App\Models\Transaktion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
+    protected $req;
     /**
      * Display a listing of the resource.
      */
@@ -22,7 +26,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('dashboard.caffe.supply.table');
+        $data = Transaktion::with('detail_transaktions')->where('role', 'Admin Kopi')->get();
+        // dd($data[0]->detail_transaktions);
+        return view('dashboard.caffe.supply.table', ['data' => $data]);
     }
 
     /**
@@ -30,7 +36,33 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "stock" => ['required'],
+            "name" => ['required'],
+            "price" => ['required'],
+        ]);
+        $this->req = $request;
+        DB::transaction(function(){
+            $transaksion = Transaktion::create([
+                "buyer" => "Caffe Ngopisedoyo",
+                "role" => 'Admin Kopi',
+            ]);
+    
+            DetailTransaktion::create([
+                'transaktion_id' => $transaksion->id,
+                'name' => $this->req->name,
+                'price' => $this->req->price,
+                'count' => $this->req->stock,
+                'amount' => $this->req->price * $this->req->stock
+            ]);
+
+            $produk = Product::find($this->req->id);
+            // dd($this->req->id);
+            $produk->stock = $produk->stock - $this->req->stock;
+            $produk->save();
+        });
+
+        return redirect()->route('supply')->with('success-add', 'Berhasil pesan');
     }
 
     /**

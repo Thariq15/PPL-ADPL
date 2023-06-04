@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('transaktion_id');
             $table->string('name');
             $table->decimal('count');
-            $table->decimal('price');
-            $table->decimal('amount');
+            $table->bigInteger('price');
+            $table->bigInteger('amount');
             $table->timestamps();
         });
     }
