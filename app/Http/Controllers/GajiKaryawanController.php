@@ -45,6 +45,7 @@ class GajiKaryawanController extends Controller
             'nominal' => $request->gaji,
             'jenis' => 'pengeluaran',
             'tanggal' => Date('Y-m-d'),
+            'role' => 'Admin Caffe'
         ]);
 
         return redirect()->route('gaji.add')->with('success-add', 'Gaji Berhasil ditambah');
