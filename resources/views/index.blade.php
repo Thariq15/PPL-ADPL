@@ -94,54 +94,22 @@
       <div class="container">
 
         <div class="row gy-4">
-
+          @foreach ($data['produk'] as $item)
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <article>
 
               <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
+                <img src="{{ asset($item->image)}}" alt="" class="img-fluid">
               </div>
 
 
               <h2 class="title">
-                <a href="#">Kopi Luwak</a>
+                <a href="#">{{ $item->name }}</a>
               </h2>
 
             </article>
           </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <article>
-
-              <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
-              </div>
-
-
-
-              <h2 class="title">
-                <a href="#">Kopi Robusta</a>
-              </h2>
-   
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <article>
-
-              <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
-              </div>
-
-
-              <h2 class="title">
-                <a href="#">Kopi Hitam</a>
-              </h2>
-        
-
-            </article>
-          </div><!-- End post list item -->
+        @endforeach
 
         </div><!-- End recent posts list -->
 
@@ -217,54 +185,24 @@
 
         <div class="row gy-4">
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <article>
+          @foreach ($data['menu'] as $item)
+            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <article>
 
-              <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
-              </div>
-
-
-              <h2 class="title">
-                <a href="#">Kopi Luwak</a>
-              </h2>
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <article>
-
-              <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
-              </div>
+                <div class="post-img">
+                  <img src="{{ asset($item->image)}}" alt="" class="img-fluid">
+                </div>
 
 
+                <h2 class="title">
+                  <a href="#">{{ $item->name }}</a>
+                </h2>
 
-              <h2 class="title">
-                <a href="#">Kopi Robusta</a>
-              </h2>
+              </article>
+            </div><!-- End post list item -->
+          @endforeach
 
-
-
-            </article>
-          </div><!-- End post list item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <article>
-
-              <div class="post-img">
-                <img src="{{ asset("assets-landing/img/kopi.jpg")}}" alt="" class="img-fluid">
-              </div>
-
-
-              <h2 class="title">
-                <a href="#">Kopi Hitam</a>
-              </h2>
-
-
-            </article>
-          </div><!-- End post list item -->
+          <!-- End post list item -->
 
         </div><!-- End recent posts list -->
 
