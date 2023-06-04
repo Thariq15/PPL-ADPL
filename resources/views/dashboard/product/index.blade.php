@@ -15,7 +15,7 @@
             <img src="{{ asset($item->image) }}" class="rounded img-thumbnail" style="height: 12rem; width: 100%; object-fit: cover!important;" alt="">
 
             <h4 class="card-title mt-2">{{ $item->name }}</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+            <p>{{ $item->description }}</p>
             <span class="col text-start">
               Rp. {{ number_format($item->price,0,',','.') }},00 ,-
             </span>

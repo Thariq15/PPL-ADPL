@@ -14,14 +14,15 @@
          
         </div>
         <div class="card-body">
-          @if (session()->has('success-add'))        
+          @if (session()->has('success-updated'))        
             <div class="alert alert-success alert-dismissible" role="alert">
-              {{ session('success-add') }}
+              {{ session('success-updated') }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           @endif
-          <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('product.update') }}" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="id" value="{{ $product->id }}">
             <div class="mb-3">
               <label class="form-label" for="basic-default-fullname">Nama Product</label>
               <input type="text" class="form-control" id="basic-default-fullname" value="{{ $product->name }}" name="name" placeholder="John Doe">
@@ -60,6 +61,9 @@
             <div class="mb-3">
               <label for="formFile" class="form-label">Foto Product</label>
               <input class="form-control" name="image" type="file" id="formFile">
+            </div>
+            <div class="mb-3">
+              <img src="{{ asset($product->image) }}" width="150" alt="gambar">
             </div>
             <div class="mb-3">
               <label class="form-label" for="basic-default-message">Desikripsi</label>
