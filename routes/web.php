@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GajiKaryawanController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\MenuController;
@@ -127,6 +128,8 @@ Route::middleware('auth')->group(function () {
   Route::prefix('detail')->group(function () {
     Route::post('/delete', [PemesananController::class, 'deleteDetail'])->name('dt.delete');
   });
+
+  ROute::get('/export', [ExportController::class, 'index'])->name('export');
 });
 
 require __DIR__ . '/auth.php';
